@@ -137,8 +137,6 @@ def data_preprocessing(df, handle_outliers=True, normalize=True, drop_id=True):
             if missing_count > 0:
                 print(f"     - {col}: {missing_count} missing values")
         
-        # Imputasi missing values dengan median untuk fitur numerik
-        # Exclude target variable 'stroke' dan 'bmi' dari imputation (bmi sudah di-handle dengan dropna)
         fitur_numerik_to_impute = [col for col in fitur_numerik if col not in ['stroke', 'bmi']]
         
         if len(fitur_numerik_to_impute) > 0:
