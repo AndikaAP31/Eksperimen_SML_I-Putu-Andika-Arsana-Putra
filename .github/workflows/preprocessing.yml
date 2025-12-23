@@ -1,15 +1,12 @@
 name: Automated Data Preprocessing
 
 on:
-  # Trigger pada setiap push ke branch main (filter paths dihapus dulu untuk debug)
   push:
     branches:
       - main
   
-  # Trigger manual
   workflow_dispatch:
 
-# PENTING: Memberikan izin agar Action bisa nge-push balik ke repo
 permissions:
   contents: write
 
@@ -30,7 +27,6 @@ jobs:
           cache: 'pip'
       
       - name: Install dependencies
-        # Kita install manual library yang dipakai di script Anda
         run: |
           python -m pip install --upgrade pip
           pip install pandas numpy scikit-learn matplotlib seaborn
@@ -40,8 +36,6 @@ jobs:
           ls -R
       
       - name: Run preprocessing script
-        # PENTING: Kita masuk ke folder preprocessing dulu
-        # Agar logika '../stroke.csv' di script python Anda valid
         run: |
           cd preprocessing
           python automate_Andika.py
